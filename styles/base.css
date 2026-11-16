@@ -1,0 +1,267 @@
+/* Base: reset, type, links, buttons, helpers. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-block-start: 1rem;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+svg {
+  flex-shrink: 0;
+}
+
+/* Links: navy on white, white on navy. Always underlined in running text. */
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.16em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Helpers */
+
+.container {
+  inline-size: 100%;
+  max-inline-size: 74rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  z-index: 200;
+  padding: 0.75rem 1rem;
+  background: var(--white);
+  color: var(--navy);
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* A gap that still needs real content. Deliberately hard to miss. */
+.placeholder {
+  background: #fff6d6;
+  color: var(--navy);
+  outline: 2px dashed var(--rule-strong);
+  outline-offset: 2px;
+  border-radius: 4px;
+  padding-inline: 0.2em;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  font-weight: 600;
+}
+
+/* Buttons: pill-shaped, at least 48px tall, full width on phones. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-block-size: var(--tap);
+  inline-size: 100%;
+  padding: 0.7rem 1.6rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--sky);
+  color: var(--navy);
+}
+
+.btn--primary:hover,
+.btn--primary:active {
+  background: var(--sky-pressed);
+}
+
+.btn--outline-light {
+  border-color: var(--aqua);
+  color: var(--white);
+}
+
+.btn--outline-light:hover,
+.btn--outline-light:active {
+  background: var(--navy-card);
+}
+
+.btn--outline {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.btn--outline:hover,
+.btn--outline:active {
+  background: var(--mist);
+}
+
+.btn--navy {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.btn--navy:hover,
+.btn--navy:active {
+  background: var(--navy-card);
+}
+
+.btn--compact {
+  inline-size: auto;
+  padding-inline: 1.15rem;
+  font-size: var(--text-small);
+}
+
+.cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* The phone number in words: hidden on phones, where the call button dials. */
+.cta-row__number {
+  display: none;
+}
+
+@media (min-width: 36em) {
+  .btn {
+    inline-size: auto;
+  }
+
+  .cta-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .cta-row__number {
+    display: block;
+    margin-inline-start: 0.5rem;
+    color: var(--text-soft);
+  }
+
+  .cta-row__number a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tap);
+    color: var(--text);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}
+
+/* Sections */
+
+.section {
+  padding-block: var(--section);
+}
+
+.section--tight-top {
+  padding-block-start: 0;
+}
+
+.section__title {
+  font-size: var(--text-h2);
+  margin-block-end: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

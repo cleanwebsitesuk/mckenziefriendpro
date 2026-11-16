@@ -1,0 +1,76 @@
+/*
+ * Design tokens: "Beside you". Calm, steady and trustworthy.
+ *
+ * Colour rules (from the brief):
+ * - Navy leads. White backgrounds elsewhere.
+ * - Aqua and sky are accents, used sparingly. They are never text on white.
+ * - On light backgrounds, text and links are navy.
+ * - Primary buttons are sky blue with navy text.
+ * - Dark red is for competitor cost figures and form errors only.
+ *
+ * Layout uses logical properties (inline/block, start/end) throughout, so the
+ * Urdu pages can flip to right-to-left without a second stylesheet.
+ */
+
+:root {
+  /* Brand colours */
+  --navy: #0b1221;
+  --navy-card: #14213d;
+  --white: #ffffff;
+  --aqua: #87cdd0;
+  --sky: #69c1ea;
+  --sky-pressed: #8fd2f1;
+  --cost-red: #991b1b;
+
+  /* Text and lines on white */
+  --ink: var(--navy);
+  --ink-soft: #3a4763; /* 9.3:1 on white */
+  --rule: #cfd6e0;
+  --rule-strong: #8793a8;
+  --mist: #f1f6f8;
+
+  /* Text and lines on navy */
+  --on-navy: #ffffff;
+  --on-navy-soft: #c6d0e0; /* 11.9:1 on navy */
+  --rule-navy: #2a3857;
+
+  /* Surface-aware values, switched by .on-navy */
+  --text: var(--ink);
+  --text-soft: var(--ink-soft);
+  --line: var(--rule);
+  --focus: var(--navy);
+
+  /* Type */
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-source-sans), system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --text-body: 1.0625rem; /* 17px */
+  --text-small: 1rem; /* 16px: the smallest size for anything people need to read */
+  --text-fine: 0.9375rem; /* 15px: footnotes only */
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.4vw, 1.25rem);
+  --text-h1: clamp(1.75rem, 1.06rem + 3.05vw, 3.5rem);
+  --text-h2: clamp(1.625rem, 1.3rem + 1.45vw, 2.5rem);
+  --text-display: clamp(1.875rem, 1.3rem + 2.55vw, 3.25rem);
+  --text-h3: 1.25rem;
+
+  /* Space */
+  --gutter: clamp(1rem, 0.4rem + 2.6vw, 2rem);
+  --section: clamp(3.25rem, 2rem + 5.5vw, 6.5rem);
+  --measure: 38rem;
+
+  /* Shape: rounded, echoing the two bars of the logo */
+  --radius-card: 1.25rem;
+  --radius-feature: 1.75rem;
+  --radius-pill: 999px;
+
+  --tap: 3rem; /* 48px minimum tap target */
+}
+
+.on-navy {
+  --text: var(--on-navy);
+  --text-soft: var(--on-navy-soft);
+  --line: var(--rule-navy);
+  --focus: var(--white);
+  background-color: var(--navy);
+  color: var(--text);
+}

@@ -1,0 +1,481 @@
+/* Site frame: header, full-screen menu, language switcher, footer, sticky bar. */
+
+/* ---------- Logo ---------- */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--white);
+}
+
+.logo__mark {
+  inline-size: 1.375rem;
+  block-size: 1.75rem;
+}
+
+.logo__word {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.1875rem;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.logo__word > span {
+  white-space: nowrap;
+}
+
+@media (min-width: 30em) {
+  .logo__word {
+    font-size: 1.3125rem;
+  }
+}
+
+/* ---------- Header ---------- */
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-block-size: 4rem;
+}
+
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  text-decoration: none;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-nav,
+.site-header__call,
+.site-header__lang {
+  display: none;
+}
+
+.urgent-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-block-size: 2.5rem;
+  padding-inline: 0.9rem;
+  border: 1.5px solid var(--aqua);
+  border-radius: var(--radius-pill);
+  color: var(--white);
+  font-size: var(--text-small);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.urgent-link::before {
+  content: "";
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: var(--aqua);
+}
+
+/* Extends the tap area to 48px without making the pill itself taller. */
+.urgent-link::after {
+  content: "";
+  position: absolute;
+  inset: -0.3rem 0;
+}
+
+.urgent-link:hover {
+  background: var(--navy-card);
+}
+
+/* Very small phones (under 360px): drop the dot so the header still fits. */
+@media (max-width: 22.4em) {
+  .urgent-link {
+    padding-inline: 0.7rem;
+  }
+
+  .urgent-link::before {
+    display: none;
+  }
+}
+
+@media (min-width: 64em) {
+  .site-header__inner {
+    min-block-size: 4.75rem;
+    gap: 1.5rem;
+  }
+
+  .site-nav {
+    display: block;
+    margin-inline-start: auto;
+  }
+
+  .site-nav ul {
+    display: flex;
+    gap: clamp(0.25rem, 1.2vw, 1.25rem);
+  }
+
+  .site-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tap);
+    padding-inline: 0.5rem;
+    color: var(--white);
+    font-size: var(--text-small);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-nav a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--aqua);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.45em;
+  }
+
+  .site-header__call {
+    display: inline-flex;
+  }
+
+  .site-header__lang {
+    display: block;
+  }
+}
+
+/* ---------- Language switcher ---------- */
+
+.lang-switcher ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.lang-switcher a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  padding-inline: 0.75rem;
+  border-radius: var(--radius-pill);
+  color: var(--white);
+  text-decoration: none;
+}
+
+.lang-switcher a[aria-current="true"] {
+  background: var(--navy-card);
+  box-shadow: inset 0 0 0 1.5px var(--aqua);
+}
+
+/* ---------- Full-screen menu (phones and tablets) ---------- */
+
+.menu__toggle {
+  display: grid;
+  place-items: center;
+  inline-size: var(--tap);
+  block-size: var(--tap);
+  border-radius: 50%;
+  color: var(--white);
+  cursor: pointer;
+  list-style: none;
+}
+
+.menu__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.menu__icon-close,
+.menu[open] .menu__icon-open {
+  display: none;
+}
+
+.menu[open] .menu__icon-close {
+  display: block;
+}
+
+.menu[open] .menu__toggle {
+  position: fixed;
+  inset-block-start: 0.5rem;
+  inset-inline-end: var(--gutter);
+  z-index: 102;
+  background: var(--navy-card);
+}
+
+.menu__panel {
+  position: fixed;
+  inset: 0;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 5rem var(--gutter) 2rem;
+  background: var(--navy);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.menu__logo {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-start: var(--gutter);
+  display: flex;
+  align-items: center;
+  block-size: var(--tap);
+}
+
+.menu__list a {
+  display: flex;
+  align-items: center;
+  min-block-size: 3.75rem;
+  border-block-end: 1px solid var(--rule-navy);
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.menu__list a.menu__urgent {
+  gap: 0.75rem;
+  border-block-end: 0;
+}
+
+.menu__urgent::before {
+  content: "";
+  inline-size: 0.625rem;
+  block-size: 0.625rem;
+  border-radius: 50%;
+  background: var(--aqua);
+}
+
+.menu__panel .cta-row {
+  margin-block-start: auto;
+}
+
+/* Stop the page behind the open menu from scrolling. */
+html:has(.menu[open]) {
+  overflow: hidden;
+}
+
+@media (min-width: 64em) {
+  .menu {
+    display: none;
+  }
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  padding-block: 3rem 2rem;
+  border-block-start: 1px solid var(--rule-navy);
+  font-size: var(--text-small);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.site-footer__brand p {
+  margin-block-start: 0.75rem;
+  max-inline-size: 22rem;
+  color: var(--on-navy-soft);
+}
+
+.site-footer__heading {
+  margin-block-end: 0.25rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* Stand-alone footer links are 48px tall, so they are easy to tap. */
+.site-footer__list > li > a:first-child {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+}
+
+.site-footer__list a {
+  color: var(--white);
+  text-decoration-color: var(--rule-strong);
+}
+
+.site-footer__list--detailed li {
+  padding-block-end: 0.5rem;
+}
+
+.site-footer__detail {
+  display: block;
+  margin-block-start: -0.55rem;
+  color: var(--on-navy-soft);
+}
+
+.site-footer__emergency {
+  margin-block: 0.5rem 0.25rem;
+  font-weight: 600;
+}
+
+.site-footer__disclaimer {
+  margin-block-start: 2.5rem;
+  padding-block-start: 1.75rem;
+  border-block-start: 1px solid var(--rule-navy);
+}
+
+.site-footer__disclaimer p {
+  max-inline-size: 62rem;
+}
+
+.site-footer__base {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-block-start: 1.25rem;
+  color: var(--on-navy-soft);
+}
+
+.site-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.5rem;
+}
+
+.site-footer__legal a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  color: var(--white);
+  text-decoration-color: var(--rule-strong);
+}
+
+@media (min-width: 40em) {
+  .site-footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .site-footer__help {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer__help .site-footer__list {
+    columns: 2;
+    column-gap: 2rem;
+  }
+
+  .site-footer__help .site-footer__list li {
+    break-inside: avoid;
+  }
+}
+
+@media (min-width: 64em) {
+  .site-footer {
+    padding-block: 4rem 2.5rem;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1.15fr 0.8fr 0.85fr 1.7fr;
+    gap: 3rem;
+  }
+
+  .site-footer__help {
+    grid-column: auto;
+  }
+
+  .site-footer__help .site-footer__list {
+    columns: 1;
+  }
+
+  .site-footer__base {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ---------- Sticky bottom bar: Call · WhatsApp · Message ---------- */
+
+.sticky-bar {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-block-end: env(safe-area-inset-bottom, 0px);
+  background: var(--navy);
+  border-block-start: 1px solid var(--rule-navy);
+}
+
+.sticky-bar__item {
+  --focus: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-block-size: 3.5rem;
+  color: var(--white);
+  font-size: var(--text-small);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sticky-bar__item:focus-visible {
+  outline-offset: -4px;
+}
+
+.sticky-bar__item + .sticky-bar__item {
+  border-inline-start: 1px solid var(--rule-navy);
+}
+
+.sticky-bar__item--call {
+  --focus: var(--navy);
+  background: var(--sky);
+  color: var(--navy);
+}
+
+/* Leave room for the bar so it never covers the end of the page. */
+body {
+  padding-block-end: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 64em) {
+  .sticky-bar {
+    display: none;
+  }
+
+  body {
+    padding-block-end: 0;
+  }
+}
+
+/* ---------- Home page only (homepageOnly in site.config.ts) ---------- */
+
+/* The header call button shows from large phones up; small phones use the sticky bar. */
+.site-header__call--always {
+  white-space: nowrap;
+}
+
+@media (min-width: 36em) {
+  .site-header__call--always {
+    display: inline-flex;
+  }
+}
+
+.sticky-bar--two {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: 64em) {
+  .site-footer__grid--single {
+    grid-template-columns: 1.2fr 0.9fr 1.9fr;
+  }
+}

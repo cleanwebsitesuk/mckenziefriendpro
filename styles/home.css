@@ -1,0 +1,941 @@
+/* Home page sections, in page order. Phone first; wider layouts are added in media queries. */
+
+/* Neighbouring white sections share one gap, not two. */
+.section + .section {
+  padding-block-start: 0;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding-block: 1rem 2.5rem;
+}
+
+.hero__grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.hero__title {
+  font-size: var(--text-h1);
+  line-height: 1.1;
+  margin-block-end: 0.75rem;
+}
+
+/* The two sentences each get their own line. */
+.hero__title > span {
+  display: block;
+}
+
+.hero__lead {
+  max-inline-size: 36rem;
+  margin-block-end: 1.25rem;
+  color: var(--on-navy-soft);
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+.hero__trust {
+  display: grid;
+  gap: 0.5rem 1.5rem;
+  margin-block-start: 1.5rem;
+  font-size: var(--text-small);
+  line-height: 1.4;
+}
+
+.hero__trust li {
+  display: flex;
+  gap: 0.55rem;
+}
+
+.hero__trust svg {
+  margin-block-start: 0.15rem;
+  color: var(--aqua);
+}
+
+/* The hero visual: a "ready for court" checklist on a stack of papers, with the two chairs. */
+.hero__visual {
+  inline-size: min(100%, 21rem);
+  margin-inline: auto;
+  padding-block: 0.75rem 2.75rem;
+  padding-inline: 0.5rem 1.25rem;
+}
+
+.case-stack {
+  position: relative;
+}
+
+/* Two more sheets behind the top one. */
+.case-stack::before,
+.case-stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-feature);
+}
+
+.case-stack::before {
+  background: var(--sky);
+  transform: rotate(5deg);
+}
+
+.case-stack::after {
+  background: var(--aqua);
+  transform: rotate(-4deg);
+}
+
+.case-sheet {
+  --line: var(--rule);
+  position: relative;
+  z-index: 1;
+  padding: 1.4rem 1.4rem 5.25rem;
+  border-radius: var(--radius-feature);
+  background: var(--white);
+  color: var(--navy);
+}
+
+.case-sheet__title {
+  margin-block-end: 0.5rem;
+  padding-block-end: 0.85rem;
+  border-block-end: 1px solid var(--line);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.case-sheet li {
+  display: flex;
+  gap: 0.7rem;
+  padding-block: 0.45rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.case-sheet__codes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-block-start: 0.4rem;
+}
+
+/* The signature two chairs, overlapping the corner of the sheet. */
+.case-stack__chairs {
+  position: absolute;
+  z-index: 2;
+  inset-block-end: -2.5rem;
+  inset-inline-end: -1.25rem;
+  display: grid;
+  place-items: center;
+  inline-size: 8.25rem;
+  block-size: 8.25rem;
+  border: 5px solid var(--navy);
+  border-radius: 50%;
+  background: var(--navy-card);
+}
+
+.case-stack__chairs svg {
+  inline-size: 68%;
+  block-size: auto;
+}
+
+@media (min-width: 36em) {
+  .hero {
+    padding-block: 2.5rem 3.5rem;
+  }
+
+  .hero__lead {
+    font-size: var(--text-lead);
+    line-height: 1.55;
+    margin-block-end: 1.75rem;
+  }
+
+  .hero__trust {
+    grid-template-columns: auto auto;
+    justify-content: start;
+    margin-block-start: 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .hero {
+    padding-block: 4.5rem 5.5rem;
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero__title {
+    margin-block-end: 1.25rem;
+  }
+
+  .hero__visual {
+    inline-size: 100%;
+    max-inline-size: 25rem;
+    margin-inline: auto 0;
+    padding-inline: 1rem 1.75rem;
+  }
+
+  .case-sheet {
+    padding: 1.9rem 1.9rem 6.5rem;
+  }
+
+  .case-sheet__title {
+    font-size: 1.75rem;
+  }
+
+  .case-stack__chairs {
+    inline-size: 10rem;
+    block-size: 10rem;
+    inset-block-end: -3rem;
+    inset-inline-end: -1.75rem;
+  }
+}
+
+/* ---------- Urgent strip ---------- */
+
+.urgent-strip {
+  background: var(--aqua);
+  color: var(--navy);
+}
+
+.urgent-strip__inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.75rem 0.9rem;
+  padding-block: 1.1rem;
+}
+
+.urgent-strip p {
+  line-height: 1.45;
+}
+
+.urgent-strip p a {
+  font-weight: 700;
+}
+
+@media (min-width: 48em) {
+  .urgent-strip__inner {
+    padding-block: 1.25rem;
+  }
+}
+
+/* ---------- Is this what you're going through? ---------- */
+
+.recognise__intro {
+  max-inline-size: var(--measure);
+  margin-block: -0.75rem 1.5rem;
+  font-size: var(--text-lead);
+}
+
+.recognise-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.recognise-card {
+  position: relative;
+  display: block;
+  block-size: 100%;
+  padding: 1.1rem 1.15rem 1.2rem;
+  border-radius: var(--radius-card);
+  background: var(--mist);
+  text-decoration: none;
+}
+
+a.recognise-card:hover {
+  box-shadow: inset 0 0 0 1.5px var(--navy);
+}
+
+.recognise-card__title {
+  display: block;
+  margin-block-end: 0.3rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Leave room for the form number in the corner. */
+.recognise-card--coded .recognise-card__title {
+  padding-inline-end: 5.75rem;
+}
+
+.recognise-card__text {
+  display: block;
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+  line-height: 1.45;
+}
+
+/* A court form number, as a small navy chip. */
+.form-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem 0.15rem 0.45rem;
+  border-radius: 0.5rem;
+  background: var(--navy);
+  color: var(--white);
+  font-size: var(--text-small);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* In the tiles it sits in the corner, the way it is printed on the court form. */
+.recognise-card .form-code {
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
+}
+
+@media (min-width: 40em) {
+  .recognise-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .recognise-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .recognise-card {
+    padding: 1.4rem 1.5rem 1.5rem;
+  }
+
+  .recognise-card .form-code {
+    inset-block-start: 1.3rem;
+    inset-inline-end: 1.3rem;
+  }
+}
+
+/* ---------- What we help with ---------- */
+
+.help-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.help-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  block-size: 100%;
+  min-block-size: 5rem;
+  padding: 1rem;
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-card);
+  text-decoration: none;
+}
+
+a.help-card:hover {
+  border-color: var(--navy);
+}
+
+.help-card__icon {
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  flex-shrink: 0;
+  border-radius: 0.9rem;
+  background: var(--mist);
+}
+
+.help-card__body {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.help-card__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.help-card__text {
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+  line-height: 1.45;
+}
+
+.help-card__chevron {
+  color: var(--rule-strong);
+}
+
+[dir="rtl"] .help-card__chevron {
+  transform: scaleX(-1);
+}
+
+.help-grid__graphic {
+  display: none;
+}
+
+@media (min-width: 40em) {
+  .help-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .help-grid__graphic {
+    display: grid;
+    place-items: center;
+  }
+
+  .help-grid__graphic svg {
+    inline-size: 7.5rem;
+    block-size: auto;
+  }
+}
+
+@media (min-width: 64em) {
+  .help-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .help-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+    padding: 1.6rem;
+  }
+
+  .help-card__chevron {
+    display: none;
+  }
+
+  .help-grid__graphic svg {
+    inline-size: 11rem;
+  }
+}
+
+/* ---------- The bridge: what a McKenzie Friend does ---------- */
+
+.role {
+  display: grid;
+  gap: 1.75rem;
+  padding: clamp(1.5rem, 0.6rem + 4vw, 3.5rem);
+  border-radius: var(--radius-feature);
+  background: var(--mist);
+}
+
+.role .section__title {
+  margin-block-end: 0.75rem;
+}
+
+.role__lead {
+  font-size: var(--text-lead);
+}
+
+.role__lists {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.role__label {
+  margin-block-end: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.tick-list li {
+  display: flex;
+  gap: 0.75rem;
+  padding-block: 0.4rem;
+  line-height: 1.45;
+}
+
+.tick-list__mark {
+  display: grid;
+  place-items: center;
+  inline-size: 1.625rem;
+  block-size: 1.625rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.tick-list__mark--yes {
+  background: var(--aqua);
+}
+
+@media (min-width: 40em) {
+  .role__lists {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .role {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: 4rem;
+  }
+}
+
+/* ---------- Navy bands: languages and final call to action ---------- */
+
+.band {
+  padding-block: var(--section);
+}
+
+.band__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.band__title {
+  max-inline-size: 18em;
+  margin-block-end: 1.25rem;
+  font-size: var(--text-display);
+  line-height: 1.1;
+}
+
+.band__body {
+  max-inline-size: var(--measure);
+  color: var(--on-navy-soft);
+  font-size: var(--text-lead);
+}
+
+.band__body a {
+  color: var(--white);
+}
+
+.band__body + .cta-row {
+  margin-block-start: 1.75rem;
+}
+
+.language-list {
+  overflow: hidden;
+  margin-block-end: 1.5rem;
+  color: var(--aqua);
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.language-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-inline-start: -1.3em;
+}
+
+.language-list li {
+  position: relative;
+  padding-inline-start: 1.3em;
+}
+
+/* Separator dots sit in each item's leading space, so a dot at the start of a line falls outside the wrapper. */
+.language-list li::before {
+  content: "·";
+  position: absolute;
+  inset-inline-start: 0.5em;
+  color: var(--on-navy-soft);
+}
+
+.band__graphic {
+  inline-size: min(19rem, 86%);
+  block-size: auto;
+  margin-inline: auto;
+}
+
+.bubble-text {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 600;
+}
+
+@media (min-width: 64em) {
+  .band__grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .band__graphic {
+    inline-size: 100%;
+    max-inline-size: 24rem;
+    margin-inline: auto 0;
+  }
+}
+
+.band--cta {
+  padding-block: clamp(3.25rem, 2rem + 5vw, 5.5rem);
+}
+
+.final-cta {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.final-cta__graphic {
+  inline-size: 6.5rem;
+  block-size: auto;
+  margin-inline: auto;
+}
+
+@media (min-width: 48em) {
+  .final-cta {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .final-cta__graphic {
+    inline-size: clamp(10rem, 18vw, 13.5rem);
+  }
+}
+
+/* ---------- What working with us looks like ---------- */
+
+.path {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  padding-inline-start: 2.25rem;
+}
+
+/* The path line. */
+.path::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.5rem;
+  inset-inline-start: 0.4rem;
+  inline-size: 3px;
+  border-radius: 3px;
+  background: var(--aqua);
+}
+
+.path__item {
+  position: relative;
+  max-inline-size: var(--measure);
+}
+
+.path__item::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.3rem;
+  inset-inline-start: -2.25rem;
+  inline-size: 1.05rem;
+  block-size: 1.05rem;
+  border: 3px solid var(--navy);
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.path__lead {
+  margin-block-end: 0.4rem;
+  font-size: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  line-height: 1.25;
+}
+
+.path__item p {
+  color: var(--ink-soft);
+}
+
+@media (min-width: 64em) {
+  .working,
+  .faqs {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    column-gap: 4rem;
+    align-items: start;
+  }
+
+  .path {
+    gap: 2.5rem;
+  }
+}
+
+/* ---------- Cost comparison: the strongest section on the page ---------- */
+
+.comparison__head {
+  max-inline-size: 48rem;
+  margin-block-end: 2rem;
+}
+
+.comparison__title {
+  margin-block-end: 1rem;
+  font-size: clamp(2rem, 1.35rem + 2.9vw, 3.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+
+.comparison__intro {
+  font-size: var(--text-lead);
+}
+
+.comparison__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.compare-card {
+  padding: 1.5rem;
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-card);
+  background: var(--white);
+}
+
+.compare-card--ours {
+  padding: 1.75rem 1.5rem;
+  border: 0;
+  border-radius: var(--radius-feature);
+  background: var(--navy);
+}
+
+.compare-card__badge {
+  display: inline-block;
+  margin-block-end: 1rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--aqua);
+  color: var(--navy);
+  font-size: var(--text-small);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.compare-card__title {
+  margin-block-end: 1rem;
+  font-size: 1.5rem;
+}
+
+.compare-card--ours .compare-card__title {
+  font-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+}
+
+.compare-card__cost-label {
+  display: block;
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+.compare-card__cost .cost-figure {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+/* Competitor cost figures: the one place dark red appears. */
+.cost-figure {
+  color: var(--cost-red);
+  font-weight: 700;
+}
+
+.compare-card__note {
+  margin-block: 0.75rem 1rem;
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+.compare-list li {
+  display: flex;
+  gap: 0.7rem;
+  padding-block: 0.7rem;
+  border-block-start: 1px solid var(--line);
+  line-height: 1.4;
+}
+
+.compare-list svg {
+  margin-block-start: 0.12rem;
+  color: var(--rule-strong);
+}
+
+.compare-card--ours .compare-list {
+  font-size: 1.125rem;
+}
+
+.compare-card--ours .compare-list svg {
+  color: var(--aqua);
+}
+
+.compare-card--ours .btn {
+  inline-size: 100%;
+  margin-block-start: 1.25rem;
+}
+
+/* "About these figures": the sources, one tap away. */
+.figures-note {
+  margin-block-start: 0.25rem;
+  border-block-start: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: var(--text-fine);
+  line-height: 1.55;
+}
+
+.figures-note summary {
+  display: flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  cursor: pointer;
+  font-size: var(--text-small);
+  text-decoration: underline;
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.2em;
+  list-style: none;
+}
+
+.figures-note summary::-webkit-details-marker {
+  display: none;
+}
+
+.figures-note p {
+  padding-block-end: 0.5rem;
+}
+
+@media (min-width: 64em) {
+  .comparison__head {
+    margin-block-end: 3rem;
+  }
+
+  .comparison__grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 1.25rem;
+  }
+
+  .compare-card {
+    padding: 2rem 1.75rem;
+  }
+
+  .compare-card--ours {
+    padding: 2.5rem 2.25rem;
+  }
+}
+
+/* ---------- Meet Shehzad ---------- */
+
+.meet {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.meet__monogram {
+  inline-size: 5.5rem;
+  block-size: auto;
+}
+
+.monogram-text {
+  font-family: var(--font-serif);
+  font-size: 68px;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.meet .section__title {
+  margin-block-end: 0.75rem;
+}
+
+.meet__body {
+  max-inline-size: var(--measure);
+  margin-block-end: 0.5rem;
+  font-size: var(--text-lead);
+}
+
+@media (min-width: 48em) {
+  .meet {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 2.5rem;
+  }
+
+  .meet__monogram {
+    inline-size: 9rem;
+  }
+}
+
+/* ---------- Reviews ---------- */
+
+.reviews {
+  display: grid;
+  gap: 1rem;
+}
+
+.review {
+  padding: 1.5rem;
+  border-radius: var(--radius-card);
+  background: var(--mist);
+}
+
+.review blockquote {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.review figcaption {
+  margin-block-start: 1rem;
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+@media (min-width: 48em) {
+  .reviews {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* ---------- FAQs ---------- */
+
+.faq {
+  border-block-start: 1px solid var(--rule);
+}
+
+.faq:last-of-type {
+  border-block-end: 1px solid var(--rule);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-block-size: 4rem;
+  padding-block: 0.9rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary h3 {
+  font-size: 1.1875rem;
+  line-height: 1.3;
+}
+
+.faq__icon {
+  transition: transform 0.2s ease;
+}
+
+.faq[open] .faq__icon {
+  transform: rotate(45deg);
+}
+
+.faq > p {
+  max-inline-size: var(--measure);
+  padding-block-end: 1.4rem;
+  color: var(--ink-soft);
+}
+
+.faqs__more {
+  margin-block-start: 0.75rem;
+}

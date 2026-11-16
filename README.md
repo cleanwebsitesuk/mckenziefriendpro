@@ -38,8 +38,8 @@ Every page is pre-rendered as static HTML, so the site is fast and cheap to host
 | `showPrices` | `false` for the MVP. Nothing on the site shows a price while this is off. |
 | `showReviews` | `false` for now. The "What clients say" section appears only when this is `true` and real reviews are in `content/en/home.ts`. |
 | `showFaqs` | `false` for now. Set to `true` to bring back "Common questions" on the home page, along with its FAQ schema. |
-| `showMeet` | `false` for now. Set to `true` to show "Meet Shehzad" on the home page once his introduction is written. |
-| `languages.*.reviewed` | A translation stays hidden until its flag is set to `true` by Shehzad or a native speaker. |
+| `showMeet` | `false` for now. Set to `true` to show "Meet Shazad" on the home page once his introduction is written. |
+| `languages.*.reviewed` | A translation stays hidden until its flag is set to `true` by Shazad or a native speaker. |
 | `comparisonCheckedDate` | The date in the cost-comparison footnote ("Figures checked …"), as `YYYY-MM-DD`. |
 | `workingWithUs` | The "What working with us looks like" blocks. Edit, reorder, add or remove. |
 | `analytics` | Off (`"none"`) until a provider is chosen. |
@@ -52,7 +52,7 @@ If the phone or WhatsApp number is ever removed, the buttons fall back to `/cont
 - `content/en/common.ts`: navigation, buttons, footer, helplines, the footer disclaimer.
 - `site.config.ts`: the "working with us" blocks.
 
-Text marked `APPROVED COPY` in those files is used exactly as supplied. Please do not reword it without sign-off. Text marked `REVISED` was changed at Shehzad's request during review (16 November 2026), with the old wording noted beside it. Anything written as `[PLACEHOLDER: …]` shows on the page in a yellow dashed box so it cannot be missed.
+Text marked `APPROVED COPY` in those files is used exactly as supplied. Please do not reword it without sign-off. Text marked `REVISED` was changed at Shazad's request during review (16 November 2026), with the old wording noted beside it. Anything written as `[PLACEHOLDER: …]` shows on the page in a yellow dashed box so it cannot be missed.
 
 ## How the project is laid out
 
@@ -100,7 +100,7 @@ All in `components/graphics/`, drawn as inline SVG so they add no extra download
 | Stacked documents with a tick | `Documents.tsx` | What we help with (tablet and desktop) |
 | Speech bubbles in four scripts | `SpeechBubbles.tsx` | Languages band |
 | Clock with a moon | `ClockMoon.tsx` | Final call to action |
-| "SA" monogram | `Monogram.tsx` | Meet Shehzad |
+| "SA" monogram | `Monogram.tsx` | Meet Shazad |
 | Path line | CSS in `styles/home.css` | What working with us looks like |
 
 Still to draw, with the pages that use them: form with ticks, magnifier over a document, shield, England and Wales map pin, and the stage graphics for Family court help.
@@ -130,7 +130,7 @@ Icons are from Lucide (`lucide-react`).
 
 - Unique title and description, canonical URL, Open Graph tags.
 - `sitemap.xml` and `robots.txt` (add each new page to `app/sitemap.ts`).
-- Schema on the home page: `ProfessionalService` (with 24/7 opening hours) and `Person` (Shehzad Akhtar). `FAQPage` is added only while the questions are visible (`showFaqs`). Deliberately not `LegalService` or `Attorney`.
+- Schema on the home page: `ProfessionalService` (with 24/7 opening hours) and `Person` (Shazad Akhtar). `FAQPage` is added only while the questions are visible (`showFaqs`). Deliberately not `LegalService` or `Attorney`.
 - hreflang tags are added with the translated pages.
 
 ## Translations (next stage)

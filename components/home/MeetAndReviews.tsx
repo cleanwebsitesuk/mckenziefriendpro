@@ -6,7 +6,7 @@ import { SiteLink } from "../SiteLink";
 import { Monogram } from "../graphics/Monogram";
 
 /** Shown only when showMeet is true in site.config.ts. */
-export function MeetShehzad({ locale, content }: { locale: Locale; content: HomeContent["meet"] }) {
+export function MeetShazad({ locale, content }: { locale: Locale; content: HomeContent["meet"] }) {
   if (!siteConfig.showMeet) return null;
   return (
     <section className="section" aria-labelledby="meet-title">

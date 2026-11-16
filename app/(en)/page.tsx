@@ -8,7 +8,7 @@ import { HelpCards } from "@/components/home/HelpCards";
 import { Hero } from "@/components/home/Hero";
 import { Role } from "@/components/home/Role";
 import { LanguagesBand } from "@/components/home/LanguagesBand";
-import { MeetShehzad, Reviews } from "@/components/home/MeetAndReviews";
+import { MeetShazad, Reviews } from "@/components/home/MeetAndReviews";
 import { Recognise } from "@/components/home/Recognise";
 import { UrgentStrip } from "@/components/home/UrgentStrip";
 import { WorkingWithUs } from "@/components/home/WorkingWithUs";
@@ -38,7 +38,7 @@ export default function HomePage() {
       <LanguagesBand content={home.languages} />
       <WorkingWithUs locale={locale} content={home.working} />
       <CostComparison locale={locale} common={common} content={home.comparison} />
-      <MeetShehzad locale={locale} content={home.meet} />
+      <MeetShazad locale={locale} content={home.meet} />
       <Reviews content={home.reviews} />
       <Faqs locale={locale} content={home.faqs} />
       <FinalCta locale={locale} common={common} content={home.finalCta} />

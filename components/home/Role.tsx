@@ -40,6 +40,8 @@ export function Role({ content }: { content: HomeContent["role"] }) {
               </div>
             ))}
           </div>
+
+          <p className="role__note">{content.audience}</p>
         </div>
       </div>
     </section>

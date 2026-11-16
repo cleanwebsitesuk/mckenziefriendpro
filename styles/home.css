@@ -478,10 +478,24 @@ a.help-card:hover {
   }
 }
 
+/* Rights of audience: a full-width note under the two lists. */
+.role__note {
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--rule);
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 @media (min-width: 64em) {
   .role {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     column-gap: 4rem;
+  }
+
+  .role__note {
+    grid-column: 1 / -1;
   }
 }
 
@@ -819,7 +833,7 @@ a.help-card:hover {
   }
 }
 
-/* ---------- Meet Shehzad ---------- */
+/* ---------- Meet Shazad ---------- */
 
 .meet {
   display: grid;

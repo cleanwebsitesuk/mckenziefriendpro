@@ -16,8 +16,8 @@ export const siteConfig = {
   siteUrl: "https://mckenziefriend.pro",
 
   person: {
-    name: "Shehzad Akhtar",
-    firstName: "Shehzad",
+    name: "Shazad Akhtar",
+    firstName: "Shazad",
     initials: "SA",
   },
 
@@ -62,7 +62,7 @@ export const siteConfig = {
    */
   showReviews: false,
 
-  /** "Meet Shehzad" on the home page. Hidden for now; set to true once his introduction is written. */
+  /** "Meet Shazad" on the home page. Hidden for now; set to true once his introduction is written. */
   showMeet: false,
 
   /**
@@ -73,7 +73,7 @@ export const siteConfig = {
 
   /**
    * Languages. A translation stays completely hidden (no page, no switcher
-   * entry, no hreflang) until `reviewed` is set to true by Shehzad or a
+   * entry, no hreflang) until `reviewed` is set to true by Shazad or a
    * native speaker. English is always on.
    */
   languages: {

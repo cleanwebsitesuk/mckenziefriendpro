@@ -5,7 +5,7 @@
  * adjusted). Do not reword them without sign-off. Everything else was written
  * to match that voice and can be edited freely.
  *
- * Blocks marked REVISED were changed at Shehzad's request during review
+ * Blocks marked REVISED were changed at Shazad's request during review
  * (16 November 2026): lines that made a solicitor or barrister sound like the
  * better option, or that undersold what a McKenzie Friend does, were removed
  * or rewritten. Availability is 24 hours a day, 7 days a week. Nothing is
@@ -30,7 +30,7 @@ export const home = {
   // Was: "Going to court without a solicitor? You don't have to face it alone."
   hero: {
     titleLines: ["Can't afford a solicitor?", "You don't have to face court alone."],
-    lead: "Going to court without a solicitor? Get professional McKenzie Friend support for family and civil cases, in English, Urdu, Hindi, Punjabi and Potohari. Speak directly to Shehzad Akhtar, from your first call to your final hearing.",
+    lead: "Going to court without a solicitor? Get professional McKenzie Friend support for family and civil cases, in English, Urdu, Hindi, Punjabi and Potohari. Speak directly to Shazad Akhtar, from your first call to your final hearing.",
     trust: [
       "Free first call",
       "Available 24/7", // REVISED: was "Available whenever you need us"
@@ -161,6 +161,9 @@ export const home = {
       "You speak for yourself in court, and we make sure you're ready",
       "It's your case and your words, set out clearly",
     ],
+    // Rights of audience. Always the judge's decision, so this must never read as a promise.
+    audience:
+      "Sometimes the judge gives permission for a McKenzie Friend to speak on your behalf in court. This is called a right of audience. If it would help your case, we'll help you ask for it.",
   },
 
   // APPROVED COPY (shortened, see below)
@@ -186,7 +189,7 @@ export const home = {
       title: "McKenzie Friend Pro",
       points: [
         "Your first call is free", // REVISED: was "Your first chat is free, then a fixed quote in writing"
-        "Shehzad, from start to finish",
+        "Shazad, from start to finish",
         "Help in English, Urdu, Hindi, Punjabi or Potohari",
         "Available 24/7", // REVISED: was "Available whenever you need us"
         "You're never alone in court",
@@ -223,11 +226,11 @@ export const home = {
 
   // Hidden for now (showMeet is false in site.config.ts).
   meet: {
-    heading: "Meet Shehzad", // APPROVED COPY
+    heading: "Meet Shazad", // APPROVED COPY
     body: placeholder(
-      "2–3 sentences about Shehzad, in his own words: his background, why he does this work and the languages he speaks",
+      "2–3 sentences about Shazad, in his own words: his background, why he does this work and the languages he speaks",
     ),
-    link: { href: "/about", label: "More about Shehzad" },
+    link: { href: "/about", label: "More about Shazad" },
   },
 
   /**
@@ -267,8 +270,8 @@ export const home = {
   // APPROVED COPY
   finalCta: {
     heading: "You don't have to work it out alone",
-    // REVISED: was "Speak to Shehzad free, in ... Potohari. Whenever you need us."
-    body: "Speak to Shehzad in English, Urdu, Hindi, Punjabi or Potohari. We are available 24 hours a day, 7 days a week.",
+    // REVISED: was "Speak to Shazad free, in ... Potohari. Whenever you need us."
+    body: "Speak to Shazad in English, Urdu, Hindi, Punjabi or Potohari. We are available 24 hours a day, 7 days a week.",
   },
 };
 

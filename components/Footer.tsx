@@ -14,6 +14,14 @@ export function Footer({ locale, common }: { locale: Locale; common: CommonConte
   const pages = [...common.nav, ...footer.extraPages, common.urgentNav];
   // Home page only: no links to pages that are not built yet.
   const single = siteConfig.homepageOnly;
+  const { company } = siteConfig;
+  const companyLine = footer.companyLine
+    .replace("{brand}", siteConfig.brandName)
+    .replace("{legalName}", company.legalName)
+    .replace("{registeredIn}", company.registeredIn)
+    .replace("{number}", company.number)
+    .replace("{office}", company.registeredOffice)
+    .replace("{ico}", company.icoReference);
 
   return (
     <footer className="site-footer on-navy">
@@ -86,6 +94,7 @@ export function Footer({ locale, common }: { locale: Locale; common: CommonConte
 
         <div className="site-footer__disclaimer">
           <p>{footer.disclaimer}</p>
+          <p className="site-footer__company">{companyLine}</p>
         </div>
 
         <div className="site-footer__base">
@@ -100,7 +109,10 @@ export function Footer({ locale, common }: { locale: Locale; common: CommonConte
             </ul>
           </nav>
           )}
-          {analyticsEnabled() ? <CookieSettingsButton label={footer.cookieSettings} /> : null}
+          <div className="site-footer__policy">
+            <SiteLink href={localePath(locale, footer.privacyLink.href)}>{footer.privacyLink.label}</SiteLink>
+            {analyticsEnabled() ? <CookieSettingsButton label={footer.cookieSettings} /> : null}
+          </div>
           <p className="site-footer__copyright">
             © {new Date().getFullYear()} {siteConfig.brandName}
           </p>

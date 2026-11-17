@@ -8,7 +8,7 @@ export const dynamic = "force-static";
  * translated versions are added (with hreflang alternates) once their
  * language is marked reviewed in site.config.ts.
  */
-const pages = ["/"];
+const pages = ["/", "/privacy"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return pages.map((path) => ({

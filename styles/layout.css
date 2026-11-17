@@ -479,3 +479,26 @@ body {
     grid-template-columns: 1.2fr 0.9fr 1.9fr;
   }
 }
+
+/* ---------- Footer: company details and policy links ---------- */
+
+.site-footer__company {
+  margin-block-start: 0.75rem;
+  max-inline-size: 62rem;
+  color: var(--on-navy-soft);
+}
+
+.site-footer__policy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1.5rem;
+}
+
+.site-footer__policy a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  color: var(--white);
+  text-decoration-color: var(--rule-strong);
+}

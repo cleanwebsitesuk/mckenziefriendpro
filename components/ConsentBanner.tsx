@@ -107,7 +107,7 @@ export function ConsentBanner({ content }: { content: CommonContent["consent"] }
         <p className="consent__status">{previous === "granted" ? content.statusAccepted : content.statusRejected}</p>
       ) : null}
       <p id="consent-more" className="consent__more" hidden={!moreOpen}>
-        {content.more}
+        {content.more} <a href="/privacy">{content.privacyLink}</a>
       </p>
       <div className="consent__actions">
         <button
@@ -131,11 +131,11 @@ export function ConsentBanner({ content }: { content: CommonContent["consent"] }
 }
 
 /** Footer button that reopens the cookie banner. Hidden when JavaScript is off (nothing loads then anyway). */
-export function CookieSettingsButton({ label }: { label: string }) {
+export function CookieSettingsButton({ label, className = "cookie-settings" }: { label: string; className?: string }) {
   return (
     <button
       type="button"
-      className="cookie-settings"
+      className={className}
       onClick={(event) =>
         window.dispatchEvent(new CustomEvent(OPEN_CONSENT_EVENT, { detail: event.currentTarget }))
       }

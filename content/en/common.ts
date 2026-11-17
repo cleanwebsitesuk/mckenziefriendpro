@@ -38,6 +38,7 @@ export const common = {
     body: "They help us make this site better. We'll only use them if you're happy for us to.",
     moreLabel: "More info",
     more: "These cookies are provided by Google. They record things like which parts of the page are used and the type of device, and can last up to 2 years. You can change your mind at any time with “Cookie settings” at the bottom of the page.",
+    privacyLink: "Read our privacy and cookies notice",
     accept: "Accept",
     reject: "No thanks",
     statusAccepted: "At the moment, you're happy for us to use cookies.",
@@ -99,6 +100,10 @@ export const common = {
     ] as { label: string; detail: string; href: string; phone?: { href: string; display: string } }[],
 
     cookieSettings: "Cookie settings",
+    privacyLink: { href: "/privacy", label: "Privacy and cookies" },
+    // {brand}, {legalName}, {registeredIn}, {number}, {office} and {ico} are filled from site.config.ts.
+    companyLine:
+      "{brand} is a trading name of {legalName}, registered in {registeredIn}, company number {number}. Registered office: {office}. Registered with the Information Commissioner's Office, reference {ico}.",
     legalLabel: "Legal",
     legalLinks: [
       { href: "/privacy", label: "Privacy" },

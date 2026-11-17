@@ -36,8 +36,21 @@ export const siteConfig = {
     e164: "+447908078852",
   },
 
-  /** Public contact email. */
+  /** Public contact email. Leave empty until it exists: the privacy page and footer leave it out. */
   email: "",
+
+  /**
+   * The company behind the trading name. UK law requires these details on
+   * the website (footer, every page) and they are used on the privacy page.
+   * The name is written exactly as it appears at Companies House.
+   */
+  company: {
+    legalName: "MCKENZIEFRIEND AI LTD",
+    number: "17362145",
+    registeredIn: "England and Wales",
+    registeredOffice: "64 Lincoln Street, Birmingham, England, B12 9EX",
+    icoReference: "ZC207595",
+  },
 
   /**
    * Prices. The MVP shows no prices anywhere. Leave this false until fees

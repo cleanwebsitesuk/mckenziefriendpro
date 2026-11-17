@@ -34,6 +34,7 @@ Every page is pre-rendered as static HTML, so the site is fast and cheap to host
 | `phone.e164`, `phone.display` | The number call buttons dial, and how it is written on the page. |
 | `whatsapp.e164` | The number the WhatsApp buttons open. |
 | `email` | Public contact email. |
+| `company` | The company's registered name, number, registered office and ICO reference. Shown in the footer and on the privacy page. |
 | `homepageOnly` | `true` for launch. The site is a single page: no menu, no links to pages that are not built yet. Set to `false` when the other pages exist. |
 | `showPrices` | `false` for the MVP. Nothing on the site shows a price while this is off. |
 | `showReviews` | `false` for now. The "What clients say" section appears only when this is `true` and real reviews are in `content/en/home.ts`. |
@@ -174,6 +175,9 @@ the visitor accepts are dropped rather than sent later.
 In GA4, mark `call_click` and `whatsapp_click` as key events under
 Admin -> Events.
 
-## Privacy
+## Privacy and company details
 
-With analytics accepted, Google Analytics processes visitors' usage data on the business's behalf, so the site needs a privacy notice before or soon after launch. The contact form (later) will collect the minimum, with no uploads.
+- **Privacy and cookies page:** `app/(en)/privacy/page.tsx`, at `/privacy`. It is linked from the footer on every page and from "More info" in the cookie banner. Company, ICO, phone and email details come from `site.config.ts`; the email line appears by itself once `email` is set.
+- **Company details** (`company` in `site.config.ts`) are shown in the footer on every page, as UK law requires for a limited company's website.
+- If the business changes how it handles information (new tools, call recording, different retention periods) or the cookies change, update the privacy page and its "Last updated" date.
+- Retention stated on the page: enquiries that don't go further, up to 6 months; case papers, 12 months after the case ends; a basic business record, 6 years; analytics, no more than 14 months.

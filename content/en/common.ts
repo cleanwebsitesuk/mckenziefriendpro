@@ -37,7 +37,7 @@ export const common = {
     title: "Is it okay if we use cookies?",
     body: "They help us make this site better. We'll only use them if you're happy for us to.",
     moreLabel: "More info",
-    more: "These cookies are provided by Google. They record things like which parts of the page are used and the type of device, and can last up to 2 years. You can change your mind at any time with \u201cCookie settings\u201d at the bottom of the page.",
+    more: "These cookies are provided by Google. They record things like which parts of the page are used and the type of device, and can last up to 2 years. You can change your mind at any time with “Cookie settings” at the bottom of the page.",
     accept: "Accept",
     reject: "No thanks",
     statusAccepted: "At the moment, you're happy for us to use cookies.",

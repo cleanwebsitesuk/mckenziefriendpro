@@ -163,7 +163,7 @@ export const home = {
     ],
     // Rights of audience. Always the judge's decision, so this must never read as a promise.
     audience:
-      "Sometimes the judge gives permission for a McKenzie Friend to speak on your behalf in court. This is called a right of audience. If it would help your case, we'll help you ask for it.",
+      "Sometimes the judge gives permission for a McKenzie Friend to speak on your behalf in court. This is called a right of audience, and when it's granted, we're ready.",
   },
 
   // APPROVED COPY (shortened, see below)

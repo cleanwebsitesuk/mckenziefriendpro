@@ -5,6 +5,8 @@ import type { CommonContent } from "@/content/en/common";
 import { Logo } from "./Logo";
 import { Text } from "./Placeholder";
 import { SiteLink } from "./SiteLink";
+import { CookieSettingsButton } from "./ConsentBanner";
+import { analyticsEnabled } from "@/lib/consent";
 
 export function Footer({ locale, common }: { locale: Locale; common: CommonContent }) {
   const { footer } = common;
@@ -98,6 +100,7 @@ export function Footer({ locale, common }: { locale: Locale; common: CommonConte
             </ul>
           </nav>
           )}
+          {analyticsEnabled() ? <CookieSettingsButton label={footer.cookieSettings} /> : null}
           <p className="site-footer__copyright">
             © {new Date().getFullYear()} {siteConfig.brandName}
           </p>

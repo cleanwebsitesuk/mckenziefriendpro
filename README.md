@@ -144,10 +144,30 @@ The structure is ready:
 
 ## Analytics and cookies
 
-`components/TrackClicks.tsx` already records three conversions in one place: `call`, `whatsapp` and `form`. Every call and WhatsApp button carries `data-track`. Nothing is sent anywhere until a provider is switched on in `site.config.ts`.
+Google Tag Manager (container `GTM-NWWQCJ4P`) is set in `site.config.ts` → `analytics.gtmId`. Empty it to switch analytics and the cookie banner off.
 
-The home page currently sets no cookies and loads nothing from third parties (fonts are self-hosted).
+**Nothing loads from Google until a visitor accepts.**
+
+- A small script in `<head>` (`lib/consent.ts`) runs first. It sets Google Consent Mode v2 defaults to "denied" and reads the visitor's saved choice.
+- The banner (`components/ConsentBanner.tsx`, wording in `content/en/common.ts`) asks once: "Is it okay if we use cookies?". "Accept" and "No thanks" are the same size and style, as UK guidance expects. "More info" explains that the cookies come from Google and how long they last.
+- Accept: consent is updated to `analytics_storage: granted` and Tag Manager loads. No thanks: nothing loads, and any `_ga` cookies are deleted.
+- The choice is kept in the browser for 12 months, then the banner asks again. Raise `CONSENT_VERSION` in `lib/consent.ts` to ask everyone again (for example if you add advertising tags).
+- "Cookie settings" in the footer reopens the banner, so people can change their mind.
+- Advertising signals (`ad_storage`, `ad_user_data`, `ad_personalization`) stay denied. Accepting only switches on `analytics_storage`. If you add Google Ads or remarketing in Tag Manager, the banner wording and the consent update both need changing first.
+- There is no `<noscript>` Tag Manager iframe on purpose: without JavaScript the visitor can't give consent, so nothing should load.
+
+### Setting up Tag Manager
+
+1. **GA4:** add a "Google tag" with your GA4 measurement ID (G-…), triggered on "Initialization – All Pages". Its built-in consent checks follow `analytics_storage`.
+2. **Calls and WhatsApp taps** are pushed to the data layer as:
+   - `{ event: "call_click", click_location: "hero" }`
+   - `{ event: "whatsapp_click", click_location: "sticky-bar" }`
+
+   `click_location` is one of: `header`, `hero`, `hero-number`, `urgent-strip`, `comparison`, `final-cta`, `final-cta-number`, `sticky-bar`, `footer` (and `menu` once the menu is switched back on).
+3. In Tag Manager, create a Data Layer Variable named `click_location`, a Custom Event trigger with event name `call_click|whatsapp_click` (tick "Use regex matching"), and a "GA4 Event" tag with event name `{{Event}}` and a parameter `click_location` = `{{click_location}}`.
+4. In GA4, mark `call_click` and `whatsapp_click` as key events.
+5. Publish the container. To test, open the site, press "Accept", then use Tag Assistant (Preview mode).
 
 ## Privacy
 
-The site collects nothing yet. The contact form (next stage) will collect the minimum, with no uploads.
+With analytics accepted, Google Analytics processes visitors' usage data on the business's behalf, so the site needs a privacy notice before or soon after launch. The contact form (later) will collect the minimum, with no uploads.

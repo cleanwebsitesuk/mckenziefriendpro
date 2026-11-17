@@ -1,0 +1,143 @@
+/*
+ * Cookie banner and the footer "Cookie settings" button.
+ * The banner is hidden unless <html data-consent="unset"> (set by the head
+ * script before the page is shown), so there is no flash for people who have
+ * already chosen, and nothing shows when JavaScript is off.
+ */
+
+.consent {
+  display: none;
+}
+
+html[data-consent="unset"] .consent {
+  position: fixed;
+  z-index: 60;
+  inset-inline: 0.5rem;
+  /* Sits above the Call · WhatsApp bar on phones and tablets. */
+  inset-block-end: calc(3.5rem + env(safe-area-inset-bottom, 0px) + 0.5rem);
+  display: grid;
+  gap: 0.35rem;
+  max-block-size: calc(100dvh - 6rem);
+  overflow-y: auto;
+  padding: 0.85rem 1rem 0.75rem;
+  border: 2px solid var(--navy);
+  border-radius: var(--radius-card);
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: 0 0.75rem 2.5rem rgb(11 18 33 / 0.35);
+}
+
+.consent__title {
+  font-size: 1.0625rem;
+  line-height: 1.25;
+}
+
+.consent__title:focus {
+  outline: none;
+}
+
+.consent__title:focus-visible {
+  outline: 3px solid var(--navy);
+  outline-offset: 3px;
+}
+
+.consent__body,
+.consent__status,
+.consent__more {
+  font-size: var(--text-fine);
+  line-height: 1.45;
+}
+
+.consent__status {
+  font-weight: 600;
+}
+
+.consent__more {
+  color: var(--ink-soft);
+}
+
+/* One row: More info, then two equal buttons. Neither choice is easier than the other. */
+.consent__actions {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-start: 0.15rem;
+}
+
+.consent__actions .btn {
+  inline-size: 100%;
+  padding: 0.5rem 0.75rem;
+}
+
+.consent__more-toggle {
+  min-block-size: var(--tap);
+  padding: 0 0.25rem 0 0;
+  border: 0;
+  background: none;
+  color: var(--navy);
+  font: inherit;
+  font-size: var(--text-fine);
+  text-decoration: underline;
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.2em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+@media (min-width: 64em) {
+  html[data-consent="unset"] .consent {
+    inset-inline: auto 1.5rem;
+    inset-block-end: 1.5rem;
+    inline-size: 26rem;
+    padding: 1.25rem 1.25rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .consent__title {
+    font-size: 1.1875rem;
+  }
+}
+
+/* Keep keyboard focus from sliding underneath the banner or the sticky bar. */
+html {
+  scroll-padding-block-end: calc(var(--consent-h, 0px) + 5rem);
+}
+
+html:not([data-consent="unset"]) {
+  --consent-h: 0px;
+}
+
+/* ---------- Footer: Cookie settings ---------- */
+
+.cookie-settings {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-block-size: var(--tap);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--white);
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule-strong);
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.cookie-settings:hover {
+  text-decoration-thickness: 0.16em;
+}
+
+/* Without JavaScript nothing is loaded, so there are no settings to change. */
+html:not([data-consent]) .cookie-settings {
+  display: none;
+}
+
+@media (min-width: 64em) {
+  .cookie-settings {
+    align-self: center;
+  }
+}

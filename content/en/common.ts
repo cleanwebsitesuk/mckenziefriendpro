@@ -32,6 +32,18 @@ export const common = {
     message: "Message",
   },
 
+  // The cookie banner. Accept and No thanks must stay equally easy to choose.
+  consent: {
+    title: "Is it okay if we use cookies?",
+    body: "They help us make this site better. We'll only use them if you're happy for us to.",
+    moreLabel: "More info",
+    more: "These cookies are provided by Google. They record things like which parts of the page are used and the type of device, and can last up to 2 years. You can change your mind at any time with “Cookie settings” at the bottom of the page.",
+    accept: "Accept",
+    reject: "No thanks",
+    statusAccepted: "At the moment, you're happy for us to use cookies.",
+    statusRejected: "At the moment, you've said no to cookies.",
+  },
+
   footer: {
     pagesHeading: "Pages",
     extraPages: [{ href: "/what-is-a-mckenzie-friend", label: "What is a McKenzie Friend?" }],
@@ -86,6 +98,7 @@ export const common = {
       },
     ] as { label: string; detail: string; href: string; phone?: { href: string; display: string } }[],
 
+    cookieSettings: "Cookie settings",
     legalLabel: "Legal",
     legalLinks: [
       { href: "/privacy", label: "Privacy" },

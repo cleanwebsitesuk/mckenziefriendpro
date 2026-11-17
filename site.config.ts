@@ -118,14 +118,14 @@ export const siteConfig = {
   } as Partial<Record<Locale, { lead: string; body: string }[]>>,
 
   /**
-   * Analytics. Nothing loads while provider is "none". The site already
-   * records call, WhatsApp and form clicks through one function
-   * (see components/TrackClicks.tsx), ready for a privacy-friendly,
-   * cookieless provider.
+   * Analytics: Google Tag Manager. Nothing loads from Google until a visitor
+   * accepts analytics cookies in the banner (see lib/consent.ts). Leave gtmId
+   * empty to switch analytics and the cookie banner off completely.
+   * Call and WhatsApp taps are sent to Tag Manager as "call_click" and
+   * "whatsapp_click" events (see components/TrackClicks.tsx and the README).
    */
   analytics: {
-    provider: "none" as "none" | "plausible",
-    plausibleDomain: "mckenziefriend.pro",
+    gtmId: "GTM-NWWQCJ4P",
   },
 };
 

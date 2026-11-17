@@ -42,7 +42,7 @@ Every page is pre-rendered as static HTML, so the site is fast and cheap to host
 | `languages.*.reviewed` | A translation stays hidden until its flag is set to `true` by Shazad or a native speaker. |
 | `comparisonCheckedDate` | The date in the cost-comparison footnote ("Figures checked …"), as `YYYY-MM-DD`. |
 | `workingWithUs` | The "What working with us looks like" blocks. Edit, reorder, add or remove. |
-| `analytics` | Off (`"none"`) until a provider is chosen. |
+| `analytics` | `ga4Id` is the GA4 measurement ID. Leave it empty to switch analytics and the cookie banner off. |
 
 If the phone or WhatsApp number is ever removed, the buttons fall back to `/contact` instead of a broken link.
 
@@ -144,29 +144,35 @@ The structure is ready:
 
 ## Analytics and cookies
 
-Google Tag Manager (container `GTM-NWWQCJ4P`) is set in `site.config.ts` → `analytics.gtmId`. Empty it to switch analytics and the cookie banner off.
+Google Analytics 4 is loaded directly with `gtag.js`. There is no Tag Manager.
+The measurement ID is in `site.config.ts` under `analytics.ga4Id`. Empty it to
+switch analytics and the cookie banner off.
 
 **Nothing loads from Google until a visitor accepts.**
 
 - A small script in `<head>` (`lib/consent.ts`) runs first. It sets Google Consent Mode v2 defaults to "denied" and reads the visitor's saved choice.
 - The banner (`components/ConsentBanner.tsx`, wording in `content/en/common.ts`) asks once: "Is it okay if we use cookies?". "Accept" and "No thanks" are the same size and style, as UK guidance expects. "More info" explains that the cookies come from Google and how long they last.
-- Accept: consent is updated to `analytics_storage: granted` and Tag Manager loads. No thanks: nothing loads, and any `_ga` cookies are deleted.
+- Accept: consent is updated to `analytics_storage: granted`, then `gtag/js` is appended and the page view is sent. No thanks: nothing loads, and any `_ga` cookies are deleted.
 - The choice is kept in the browser for 12 months, then the banner asks again. Raise `CONSENT_VERSION` in `lib/consent.ts` to ask everyone again (for example if you add advertising tags).
 - "Cookie settings" in the footer reopens the banner, so people can change their mind.
-- Advertising signals (`ad_storage`, `ad_user_data`, `ad_personalization`) stay denied. Accepting only switches on `analytics_storage`. If you add Google Ads or remarketing in Tag Manager, the banner wording and the consent update both need changing first.
-- There is no `<noscript>` Tag Manager iframe on purpose: without JavaScript the visitor can't give consent, so nothing should load.
+- Advertising signals (`ad_storage`, `ad_user_data`, `ad_personalization`) stay denied. Accepting only switches on `analytics_storage`. If you add Google Ads or remarketing, the banner wording and the consent update both need changing first, and `CONSENT_VERSION` must be raised so everyone is asked again.
 
-### Setting up Tag Manager
+### Events
 
-1. **GA4:** add a "Google tag" with your GA4 measurement ID (G-…), triggered on "Initialization – All Pages". Its built-in consent checks follow `analytics_storage`.
-2. **Calls and WhatsApp taps** are pushed to the data layer as:
-   - `{ event: "call_click", click_location: "hero" }`
-   - `{ event: "whatsapp_click", click_location: "sticky-bar" }`
+Calls and WhatsApp taps are sent as GA4 events (`components/TrackClicks.tsx`):
 
-   `click_location` is one of: `header`, `hero`, `hero-number`, `urgent-strip`, `comparison`, `final-cta`, `final-cta-number`, `sticky-bar`, `footer` (and `menu` once the menu is switched back on).
-3. In Tag Manager, create a Data Layer Variable named `click_location`, a Custom Event trigger with event name `call_click|whatsapp_click` (tick "Use regex matching"), and a "GA4 Event" tag with event name `{{Event}}` and a parameter `click_location` = `{{click_location}}`.
-4. In GA4, mark `call_click` and `whatsapp_click` as key events.
-5. Publish the container. To test, open the site, press "Accept", then use Tag Assistant (Preview mode).
+- `call_click`, with a `click_location` parameter
+- `whatsapp_click`, with a `click_location` parameter
+
+`click_location` is one of: `header`, `hero`, `hero-number`, `urgent-strip`,
+`comparison`, `final-cta`, `final-cta-number`, `sticky-bar`, `footer` (and
+`menu` once the menu is switched back on).
+
+A tap is only sent while `<html data-consent="granted">`, so taps made before
+the visitor accepts are dropped rather than sent later.
+
+In GA4, mark `call_click` and `whatsapp_click` as key events under
+Admin -> Events.
 
 ## Privacy
 

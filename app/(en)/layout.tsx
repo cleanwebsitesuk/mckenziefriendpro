@@ -37,7 +37,7 @@ export default function EnglishLayout({ children }: { children: React.ReactNode 
     // suppressHydrationWarning: the consent script sets data-consent on <html> before React loads.
     <html lang="en-GB" dir="ltr" className={`${sourceSerif.variable} ${sourceSans.variable}`} suppressHydrationWarning>
       <head>
-        {/* Must run first: Google consent defaults, then Tag Manager only if the visitor has accepted. */}
+        {/* Must run first: Google consent defaults, then Google Analytics only if the visitor has accepted. */}
         {analyticsEnabled() ? <script dangerouslySetInnerHTML={{ __html: consentHeadScript() }} /> : null}
       </head>
       <body>

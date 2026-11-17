@@ -11,15 +11,15 @@ const eventNames: Record<Conversion, string> = {
 };
 
 /**
- * Records one conversion in the Google Tag Manager data layer, e.g.
- *   { event: "call_click", click_location: "hero" }
- * Events are only sent on to Google if the visitor accepted analytics
- * cookies: until then Tag Manager isn't loaded and the events go nowhere.
- * See the README for the matching trigger and GA4 tag in Tag Manager.
+ * Sends one conversion to GA4, e.g.
+ *   gtag("event", "call_click", { click_location: "hero" })
+ * Nothing is sent unless the visitor has accepted analytics cookies, which
+ * the head script records as <html data-consent="granted">. Taps made before
+ * that are dropped rather than queued, so nothing is sent later on.
  */
 export function track(kind: Conversion, place?: string) {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: eventNames[kind], click_location: place ?? "unknown" });
+  if (document.documentElement.getAttribute("data-consent") !== "granted") return;
+  window.gtag?.("event", eventNames[kind], { click_location: place ?? "unknown" });
 }
 
 /** Listens for taps on anything marked data-track="call" or "whatsapp" and records them. */

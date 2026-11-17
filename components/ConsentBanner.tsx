@@ -14,7 +14,7 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
-    __mfpLoadGtm?: () => void;
+    __mfpLoadGa?: () => void;
   }
 }
 
@@ -87,7 +87,7 @@ export function ConsentBanner({ content }: { content: CommonContent["consent"] }
     saveChoice(choice);
     window.gtag?.("consent", "update", { analytics_storage: choice });
     if (choice === "granted") {
-      window.__mfpLoadGtm?.();
+      window.__mfpLoadGa?.();
     } else {
       clearAnalyticsCookies();
     }

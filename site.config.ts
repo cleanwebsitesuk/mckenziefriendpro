@@ -118,14 +118,16 @@ export const siteConfig = {
   } as Partial<Record<Locale, { lead: string; body: string }[]>>,
 
   /**
-   * Analytics: Google Tag Manager. Nothing loads from Google until a visitor
-   * accepts analytics cookies in the banner (see lib/consent.ts). Leave gtmId
-   * empty to switch analytics and the cookie banner off completely.
-   * Call and WhatsApp taps are sent to Tag Manager as "call_click" and
-   * "whatsapp_click" events (see components/TrackClicks.tsx and the README).
+   * Analytics: Google Analytics 4, loaded directly (no Tag Manager). Nothing
+   * loads from Google until a visitor accepts analytics cookies in the banner
+   * (see lib/consent.ts). Leave ga4Id empty to switch analytics and the cookie
+   * banner off completely.
+   * Call and WhatsApp taps are sent as GA4 events "call_click" and
+   * "whatsapp_click", each with a "click_location" parameter
+   * (see components/TrackClicks.tsx and the README).
    */
   analytics: {
-    gtmId: "GTM-NWWQCJ4P",
+    ga4Id: "G-RYSL9YJTCN",
   },
 };
 
